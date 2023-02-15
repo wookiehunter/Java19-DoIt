@@ -17,8 +17,9 @@ public class Home extends Application {
 
         stage.setScene(scene);
         stage.setTitle("Do-It!!!");
-        stage.setAlwaysOnTop(true);
+        stage.setAlwaysOnTop(false);
         stage.setResizable(false);
+
         stage.show();
     }
 

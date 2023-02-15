@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66ab8fb4-19a4-44ba-8264-966cf7289ee8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/Home.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/stevengodson/java19doit/ui.fxml" afterDir="false" />
+    <list default="true" id="66ab8fb4-19a4-44ba-8264-966cf7289ee8" name="Changes" comment="scenebuilder updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stevengodson/java19doit/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stevengodson/java19doit/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stevengodson/java19doit/ui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stevengodson/java19doit/ui.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,15 +44,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_directory_selection": "/Users/sg/IdeaProjects/Java19-DoIt/src/main/java/com/stevengodson/java19doit",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/sg/IdeaProjects/Java19-DoIt/src/main/java/com/stevengodson/java19doit&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/stevengodson/java19doit" />
@@ -76,7 +70,19 @@
       <option name="presentableId" value="Default" />
       <updated>1676195420727</updated>
     </task>
+    <task id="LOCAL-00001" summary="scenebuilder updates">
+      <created>1676313604828</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676313604828</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="scenebuilder updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="scenebuilder updates" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

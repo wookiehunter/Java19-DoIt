@@ -1,6 +1,8 @@
 package com.stevengodson.java19doit;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.beans.binding.Bindings;
@@ -9,9 +11,12 @@ import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 import static javafx.beans.property.ReadOnlyIntegerProperty.readOnlyIntegerProperty;
 
@@ -20,6 +25,7 @@ public class Controller implements Initializable {
     private final Task currentTask = new Task();
 
     private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+    private final HashMap<Integer, Task> tasksMap = new HashMap<>();
 
     @FXML
     private ProgressBar progressBar;
@@ -79,10 +85,6 @@ public class Controller implements Initializable {
         descriptionColumn.setCellValueFactory(rowData -> rowData.getValue().descriptionProperty());
         progressColumn.setCellValueFactory(rowData -> Bindings.concat(rowData.getValue().progressProperty(),"%"));
 
-        tasks.addAll(new Task(1, "High", "Complete Design Document", 10),
-                new Task(2, "Medium", "Update Class Diagram", 0),
-                new Task(3, "Low", "Fix Bug 245232", 0));
-
         StringBinding addButtonTextBinding = new StringBinding() {
             {
                 super.bind(currentTask.idProperty());
@@ -95,11 +97,45 @@ public class Controller implements Initializable {
                     return "Update";
             }
         };
+
         add.textProperty().bind(addButtonTextBinding);
         add.disableProperty().bind(Bindings.greaterThan(3, currentTask.descriptionProperty().length()));
         tasksTable.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Task> observable, Task oldValue, Task newValue) -> {
             setCurrentTask(newValue);
         });
+
+    }
+
+    int lastId = 0;
+    @FXML
+    void addButtonClicked(ActionEvent event) {
+        if(currentTask.getId() == null) {
+            Task t = new Task(++lastId, currentTask.getPriority(), currentTask.getDescription(), currentTask.getProgress());
+            tasks.add(t);
+            tasksMap.put(lastId, t);
+        } else {
+            Task t = tasksMap.get(currentTask.getId());
+            t.setDescription(currentTask.getDescription());
+            t.setPriority(currentTask.getPriority());
+            t.setProgress(currentTask.getProgress());
+        }
+        setCurrentTask(null);
+    }
+
+    @FXML
+    private void cancelButtonClicked(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Are you sure you wat to cancel?");
+        alert.setHeaderText("Cancel or Keep");
+        alert.setContentText("This message is for you...");
+        alert.getButtonTypes().remove(0,2);
+        alert.getButtonTypes().add(0, ButtonType.YES);
+        alert.getButtonTypes().add(1, ButtonType.NO);
+        Optional<ButtonType> confirmation = alert.showAndWait();
+        if(confirmation.get() == ButtonType.YES) {
+            setCurrentTask(null);
+            tasksTable.getSelectionModel().clearSelection();
+        }
     }
 
     private void setCurrentTask(Task selectedTask) {
