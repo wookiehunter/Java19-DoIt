@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="19.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <int>1</int>
+   <object class="com.stevengodson.java19doit.Task">
+    <void property="description">
+     <string>aass</string>
+    </void>
+    <void property="id">
+     <int>1</int>
+    </void>
+    <void property="priority">
+     <string>High</string>
+    </void>
+    <void property="progress">
+     <int>2</int>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

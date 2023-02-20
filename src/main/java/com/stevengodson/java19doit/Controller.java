@@ -4,28 +4,30 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ReadOnlyIntegerProperty;
+import static javafx.beans.property.ReadOnlyIntegerProperty.readOnlyIntegerProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-
-import static javafx.beans.property.ReadOnlyIntegerProperty.readOnlyIntegerProperty;
 
 public class Controller implements Initializable {
 
     private final Task currentTask = new Task();
 
     private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+
     private final HashMap<Integer, Task> tasksMap = new HashMap<>();
+
+    public HashMap<Integer, Task> getTasksMap() {
+        return tasksMap;
+    }
 
     @FXML
     private ProgressBar progressBar;
@@ -97,18 +99,17 @@ public class Controller implements Initializable {
                     return "Update";
             }
         };
-
         add.textProperty().bind(addButtonTextBinding);
         add.disableProperty().bind(Bindings.greaterThan(3, currentTask.descriptionProperty().length()));
         tasksTable.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Task> observable, Task oldValue, Task newValue) -> {
             setCurrentTask(newValue);
         });
-
     }
 
     int lastId = 0;
+
     @FXML
-    void addButtonClicked(ActionEvent event) {
+    private void addButtonClicked(ActionEvent event) {
         if(currentTask.getId() == null) {
             Task t = new Task(++lastId, currentTask.getPriority(), currentTask.getDescription(), currentTask.getProgress());
             tasks.add(t);
@@ -124,15 +125,15 @@ public class Controller implements Initializable {
 
     @FXML
     private void cancelButtonClicked(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Are you sure you wat to cancel?");
-        alert.setHeaderText("Cancel or Keep");
-        alert.setContentText("This message is for you...");
-        alert.getButtonTypes().remove(0,2);
+
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText("Are you sure you want to cancel?");
+        alert.setTitle("Cancelling Update");
+        alert.getButtonTypes().remove(0, 2);
         alert.getButtonTypes().add(0, ButtonType.YES);
         alert.getButtonTypes().add(1, ButtonType.NO);
-        Optional<ButtonType> confirmation = alert.showAndWait();
-        if(confirmation.get() == ButtonType.YES) {
+        Optional<ButtonType> confirmationResponse = alert.showAndWait();
+        if(confirmationResponse.get() == ButtonType.YES) {
             setCurrentTask(null);
             tasksTable.getSelectionModel().clearSelection();
         }
@@ -150,6 +151,14 @@ public class Controller implements Initializable {
             currentTask.setDescription("");
             currentTask.setProgress(0);
         }
+    }
+
+    void setTasksMap(HashMap<Integer, Task> initialTasksMap) {
+        tasksMap.clear();
+        tasks.clear();
+        tasksMap.putAll(initialTasksMap);
+        tasks.addAll(initialTasksMap.values());
+        lastId = tasksMap.keySet().stream().max(Integer::compare).get();
     }
 
 }
